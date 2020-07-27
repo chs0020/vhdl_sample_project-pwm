@@ -1,0 +1,11 @@
+# compile vhdl design source files
+vhdl pwm_utils  \
+"../../../../hierarchical_pwm_fsm.srcs/sources_1/new/clk_divider.vhd" \
+"../../../../hierarchical_pwm_fsm.srcs/sources_1/new/pwm_fsm.vhd" \
+"../../../../hierarchical_pwm_fsm.srcs/sources_1/new/top.vhd" \
+
+vhdl xil_defaultlib  \
+"../../../../hierarchical_pwm_fsm.srcs/sim_1/new/testbench.vhd" \
+
+# Do not sort compile order
+nosort
