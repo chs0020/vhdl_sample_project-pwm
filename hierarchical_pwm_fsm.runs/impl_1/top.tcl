@@ -16,6 +16,58 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+namespace eval ::optrace {
+  variable script "C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.runs/impl_1/top.tcl"
+  variable category "vivado_impl"
+}
+
+# Try to connect to running dispatch if we haven't done so already.
+# This code assumes that the Tcl interpreter is not using threads,
+# since the ::dispatch::connected variable isn't mutex protected.
+if {![info exists ::dispatch::connected]} {
+  namespace eval ::dispatch {
+    variable connected false
+    if {[llength [array get env XILINX_CD_CONNECT_ID]] > 0} {
+      set result "true"
+      if {[catch {
+        if {[lsearch -exact [package names] DispatchTcl] < 0} {
+          set result [load librdi_cd_clienttcl[info sharedlibextension]] 
+        }
+        if {$result eq "false"} {
+          puts "WARNING: Could not load dispatch client library"
+        }
+        set connect_id [ ::dispatch::init_client -mode EXISTING_SERVER ]
+        if { $connect_id eq "" } {
+          puts "WARNING: Could not initialize dispatch client"
+        } else {
+          puts "INFO: Dispatch client connection id - $connect_id"
+          set connected true
+        }
+      } catch_res]} {
+        puts "WARNING: failed to connect to dispatch server - $catch_res"
+      }
+    }
+  }
+}
+if {$::dispatch::connected} {
+  # Remove the dummy proc if it exists.
+  if { [expr {[llength [info procs ::OPTRACE]] > 0}] } {
+    rename ::OPTRACE ""
+  }
+  proc ::OPTRACE { task action {tags {} } } {
+    ::vitis_log::op_trace "$task" $action -tags $tags -script $::optrace::script -category $::optrace::category
+  }
+  # dispatch is generic. We specifically want to attach logging.
+  ::vitis_log::connect_client
+} else {
+  # Add dummy proc if it doesn't exist.
+  if { [expr {[llength [info procs ::OPTRACE]] == 0}] } {
+    proc ::OPTRACE {{arg1 \"\" } {arg2 \"\"} {arg3 \"\" } {arg4 \"\"} {arg5 \"\" } {arg6 \"\"}} {
+        # Do nothing
+    }
+  }
+}
+
 proc start_step { step } {
   set stopFile ".stop.rst"
   if {[file isfile .stop.rst]} {
@@ -33,6 +85,8 @@ proc start_step { step } {
   if { [string equal $platform unix] } {
     if { [info exist ::env(HOSTNAME)] } {
       set host $::env(HOSTNAME)
+    } elseif { [info exist ::env(HOST)] } {
+      set host $::env(HOST)
     }
   } else {
     if { [info exist ::env(COMPUTERNAME)] } {
@@ -58,18 +112,32 @@ proc step_failed { step } {
   set endFile ".$step.error.rst"
   set ch [open $endFile w]
   close $ch
+OPTRACE "impl_1" END { }
 }
 
+set_msg_config -id {Common 17-41} -limit 10000000
 
+OPTRACE "impl_1" START { ROLLUP_1 }
+OPTRACE "Phase: Write Bitstream" START { ROLLUP_AUTO }
+OPTRACE "write_bitstream setup" START { }
 start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
-  set_param chipscope.maxJobs 2
+  set_param chipscope.maxJobs 1
   open_checkpoint top_routed.dcp
-  set_property webtalk.parent_dir C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.cache/wt [current_project]
-  catch { write_mem_info -force top.mmi }
+  set_property webtalk.parent_dir C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.cache/wt [current_project]
+set_property TOP top [current_fileset]
+OPTRACE "read constraints: write_bitstream" START { }
+OPTRACE "read constraints: write_bitstream" END { }
+  catch { write_mem_info -force -no_partial_mmi top.mmi }
+OPTRACE "write_bitstream setup" END { }
+OPTRACE "write_bitstream" START { }
   write_bitstream -force top.bit 
+OPTRACE "write_bitstream" END { }
+OPTRACE "write_bitstream misc" START { }
+OPTRACE "read constraints: write_bitstream_post" START { }
+OPTRACE "read constraints: write_bitstream_post" END { }
   catch {write_debug_probes -quiet -force top}
   catch {file copy -force top.ltx debug_nets.ltx}
   close_msg_db -file write_bitstream.pb
@@ -82,3 +150,6 @@ if {$rc} {
   unset ACTIVE_STEP 
 }
 
+OPTRACE "write_bitstream misc" END { }
+OPTRACE "Phase: Write Bitstream" END { }
+OPTRACE "impl_1" END { }

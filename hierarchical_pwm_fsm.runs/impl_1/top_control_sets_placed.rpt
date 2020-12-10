@@ -1,8 +1,8 @@
-Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
+Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------
-| Tool Version : Vivado v.2019.2 (win64) Build 2708876 Wed Nov  6 21:40:23 MST 2019
-| Date         : Fri Jul 31 11:56:54 2020
-| Host         : CSMITH-Z14UG6 running 64-bit major release  (build 9200)
+| Tool Version : Vivado v.2020.2 (win64) Build 3064766 Wed Nov 18 09:12:45 MST 2020
+| Date         : Thu Dec 10 16:01:10 2020
+| Host         : DESKTOP-10RVCSR running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
 | Device       : xc7z010
@@ -27,7 +27,7 @@ Table of Contents
 |    Minimum number of control sets                        |     3 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    20 |
+| Unused register locations in slices containing registers |    13 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -43,8 +43,8 @@ Table of Contents
 | >= 0 to < 4        |     1 |
 | >= 4 to < 6        |     0 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     0 |
-| >= 10 to < 12      |     1 |
+| >= 8 to < 10       |     1 |
+| >= 10 to < 12      |     0 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
 | >= 16              |     1 |
@@ -58,9 +58,9 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
 +--------------+-----------------------+------------------------+-----------------+--------------+
-| No           | No                    | No                     |              44 |           13 |
-| No           | No                    | Yes                    |               0 |            0 |
-| No           | Yes                   | No                     |               0 |            0 |
+| No           | No                    | No                     |               2 |            1 |
+| No           | No                    | Yes                    |              33 |            9 |
+| No           | Yes                   | No                     |               8 |            2 |
 | Yes          | No                    | No                     |               0 |            0 |
 | Yes          | No                    | Yes                    |               0 |            0 |
 | Yes          | Yes                   | No                     |               0 |            0 |
@@ -70,12 +70,12 @@ Table of Contents
 4. Detailed Control Set Information
 -----------------------------------
 
-+---------------------------------+---------------+------------------+------------------+----------------+
-|           Clock Signal          | Enable Signal | Set/Reset Signal | Slice Load Count | Bel Load Count |
-+---------------------------------+---------------+------------------+------------------+----------------+
-|  pwm_fsm/next_state_reg_i_2_n_0 |               |                  |                1 |              1 |
-|  main_clk_IBUF_BUFG             |               |                  |                3 |             10 |
-|  clk_BUFG                       |               |                  |                9 |             33 |
-+---------------------------------+---------------+------------------+------------------+----------------+
++---------------------+---------------+---------------------------+------------------+----------------+--------------+
+|     Clock Signal    | Enable Signal |      Set/Reset Signal     | Slice Load Count | Bel Load Count | Bels / Slice |
++---------------------+---------------+---------------------------+------------------+----------------+--------------+
+|  main_clk_IBUF_BUFG |               |                           |                1 |              2 |         2.00 |
+|  main_clk_IBUF_BUFG |               | clk_divide/cnt[7]_i_1_n_0 |                2 |              8 |         4.00 |
+|  div_clk_OBUF_BUFG  |               | pwm_fsm_rst_IBUF          |                9 |             33 |         3.67 |
++---------------------+---------------+---------------------------+------------------+----------------+--------------+
 
 

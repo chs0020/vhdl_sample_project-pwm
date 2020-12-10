@@ -1,7 +1,8 @@
-0.6
-2019.2
-Nov  6 2019
-21:57:16
-C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.srcs/sources_1/new/clk_divider.vhd,1595801670,vhdl,C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.srcs/sim_1/new/testbench.vhd,,,clk_divider,,,,,,,,
-C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.srcs/sources_1/new/pwm_fsm.vhd,1595797322,vhdl,C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.srcs/sim_1/new/testbench.vhd,,,pwm_fsm,,,,,,,,
-C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.srcs/sources_1/new/top.vhd,1595797892,vhdl,C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.srcs/sim_1/new/testbench.vhd,,,top,,,,,,,,
+0.7
+2020.2
+Nov 18 2020
+09:47:47
+C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sources_1/new/clk_divider.vhd,1607632419,vhdl,C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sources_1/new/top.vhd,,,clk_divider,,,,,,,,
+C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sources_1/new/debounce.vhd,1607629885,vhdl,C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sources_1/new/top.vhd,,,debounce,,,,,,,,
+C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sources_1/new/pwm_fsm.vhd,1607631369,vhdl,C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sources_1/new/top.vhd,,,pwm_fsm,,,,,,,,
+C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sources_1/new/top.vhd,1607633430,vhdl,C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sim_1/new/testbench.vhd,,,top,,,,,,,,

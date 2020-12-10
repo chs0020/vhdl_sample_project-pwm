@@ -1,6 +1,7 @@
 # compile vhdl design source files
 vhdl pwm_utils  \
 "../../../../hierarchical_pwm_fsm.srcs/sources_1/new/clk_divider.vhd" \
+"../../../../hierarchical_pwm_fsm.srcs/sources_1/new/debounce.vhd" \
 "../../../../hierarchical_pwm_fsm.srcs/sources_1/new/pwm_fsm.vhd" \
 "../../../../hierarchical_pwm_fsm.srcs/sources_1/new/top.vhd" \
 

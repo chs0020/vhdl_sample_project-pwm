@@ -16,23 +16,27 @@ end clk_divider;
 architecture Behavioral of clk_divider is
 
     signal cnt : std_logic_vector(7 downto 0);
-    signal tmp : std_logic := '0';
+    signal last_clk : std_logic := '0';
 
 begin
 
-    special_cnt_div : process (clk_in, rst) begin
-    
-        if (rst = '1') then
-            cnt <= (others => '0');
-            tmp <= '0';
-            clk_out <= tmp;
-        elsif rising_edge(clk_in) then
-            if (cnt = divisor) then
+    special_cnt_div : process (clk_in, rst)
+    begin
+
+        if rising_edge(clk_in) then
+ 
+            if (rst = '1') then
                 cnt <= (others => '0');
-                tmp <= not tmp;
-                clk_out <= tmp;
+                last_clk <= '0';
+                clk_out <= '0';
+            elsif (divisor = cnt) then
+                cnt <= (others => '0');
+                last_clk <= not last_clk;
+                clk_out <= last_clk;
             else
                 cnt <= cnt + '1';
+                last_clk <= last_clk;
+                clk_out <= last_clk;
             end if;
         end if;
      

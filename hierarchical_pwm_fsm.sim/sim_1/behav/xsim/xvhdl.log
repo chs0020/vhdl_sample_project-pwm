@@ -1,2 +1,2 @@
-INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/csmith657/Desktop/digital-design-tutorials/CoraZ7/projects/hierarchical_pwm_fsm/hierarchical_pwm_fsm.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.srcs/sim_1/new/testbench.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'testbench'

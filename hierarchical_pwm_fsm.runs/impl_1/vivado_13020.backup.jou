@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.2 (64-bit)
+# SW Build 3064766 on Wed Nov 18 09:12:45 MST 2020
+# IP Build 3064653 on Wed Nov 18 14:17:31 MST 2020
+# Start of session at: Thu Dec 10 16:00:19 2020
+# Process ID: 13020
+# Current directory: C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.runs/impl_1
+# Command line: vivado.exe -log top.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source top.tcl -notrace
+# Log file: C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.runs/impl_1/top.vdi
+# Journal file: C:/Users/smith/Desktop/repos/digital_design/vhdl_sample_project-pwm/hierarchical_pwm_fsm.runs/impl_1\vivado.jou
+#-----------------------------------------------------------
+source top.tcl -notrace
